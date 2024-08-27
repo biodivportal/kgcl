@@ -12,7 +12,7 @@ SCHEMA_NAME = $(shell sh ./utils/get-value.sh name)
 SOURCE_SCHEMA_PATH = $(shell sh ./utils/get-value.sh source_schema_path)
 SRC = src
 DEST = project
-PYMODEL = $(SRC)/$(SCHEMA_NAME)/datamodel
+PYMODEL = $(SRC)/$(SCHEMA_NAME)_schema/datamodel
 DOCDIR = docs
 TEMPLATEDIR = doc-templates
 
@@ -83,7 +83,7 @@ $(DOCDIR):
 	mkdir -p $@
 
 gendoc: $(DOCDIR)
-	cp $(SRC)/docs/*md $(DOCDIR) ; \
+	cp -r $(SRC)/docs/*md $(DOCDIR) ; \
 	$(RUN) gen-doc -d $(DOCDIR) --template-directory $(SRC)/$(TEMPLATEDIR) $(SOURCE_SCHEMA_PATH)
 
 testdoc: gendoc serve

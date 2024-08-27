@@ -9,12 +9,11 @@ authors = [
 license = "MIT"
 readme = "README.md"
 
-
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 linkml-runtime = ">=1.1.24"
 lark = ">=1.1.2"
-prefixmaps = "^0.1.5"
+prefixmaps = "^0.2.0"
 curies = ">=0.6.0"
 
 [tool.poetry.dev-dependencies]
@@ -24,16 +23,16 @@ mkdocs-material = "^8.2.8"
 mkdocs-mermaid2-plugin = "^0.6.0"
 
 [tool.poetry.group.dev.dependencies]
-linkml = "^1.4.3"
+linkml = ">=1.4.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-kgcl-diff = "kgcl_schema.kgcl_diff:cli"
-kgcl-apply = "kgcl_schema.kgcl:cli"
-kgcl-parse = "kgcl_schema.grammar.parser:cli"
+kgcl-diff = "kgcl.kgcl_diff:cli"
+kgcl-apply = "kgcl.kgcl:cli"
+kgcl-parse = "kgcl.grammar.parser:cli"
 
 [tool.poetry.extras]
 docs = ["linkml", "mkdocs-material"]
