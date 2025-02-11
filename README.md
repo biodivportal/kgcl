@@ -18,3 +18,20 @@ The following URIs will resolve to the KGCL standard:
 
 [Read more here.](https://incatools.github.io/kgcl/)
 
+## How to run project locally
+install python 3.9, using mise (optional), get mise from [here](https://mise.jdx.dev/)
+```bash
+mise install python 3.9
+```
+install poetry
+```bash
+pip install poetry
+```
+install dependencies
+```bash
+poetry install
+```
+run tests
+```bash
+poetry run pytest
+```
