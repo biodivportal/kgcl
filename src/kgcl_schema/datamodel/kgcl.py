@@ -311,6 +311,9 @@ class NodeDeletionId(NodeChangeId):
 
 class ObjectPropertyDeletionId(NodeDeletionId):
     pass
+class ClassDeletionId(NodeDeletionId):
+    pass
+
 
 class NodeDirectMergeId(NodeObsoletionId):
     pass
@@ -2558,6 +2561,36 @@ class ObjectPropertyDeletion(NodeDeletion):
             self.change_description = str(self.change_description)
 
         super().__post_init__(**kwargs)
+@dataclass
+class ClassDeletion(NodeDeletion):
+    """
+    A node deletion where the owl type is 'owl:Class'
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = KGCL.ClassDeletion
+    class_class_curie: ClassVar[str] = "kgcl:ClassDeletion"
+    class_name: ClassVar[str] = "ClassDeletion"
+    class_model_uri: ClassVar[URIRef] = KGCL.ClassDeletion
+
+    id: Union[str, ClassDeletionId] = None
+    superclass: Optional[Union[str, NodeId]] = None
+    change_description: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ClassDeletionId):
+            self.id = ClassDeletionId(self.id)
+
+        if self.superclass is not None and not isinstance(self.superclass, NodeId):
+            self.superclass = NodeId(self.superclass)
+
+        if self.change_description is not None and not isinstance(self.change_description, str):
+            self.change_description = str(self.change_description)
+
+        super().__post_init__(**kwargs)
+
 
 @dataclass(repr=False)
 class NodeDirectMerge(NodeObsoletion):
